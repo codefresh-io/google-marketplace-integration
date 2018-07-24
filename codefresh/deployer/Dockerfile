@@ -13,9 +13,14 @@ RUN cat /tmp/schema.yaml \
     > /tmp/schema.yaml.new \
     && mv /tmp/schema.yaml.new /tmp/schema.yaml
 
+FROM gcr.io/cloud-marketplace-tools/k8s/deployer_helm
 
-FROM gcr.io/cloud-marketplace-tools/k8s/deployer_envsubst
+COPY chart /data/chart
 
-COPY manifest /data/manifest
-COPY apptest/deployer /data-test/
+# Package Helm chart(s) source into .tar.gz format expected by create_manifests.sh
+RUN set -x && \
+    cd /data/chart && \
+    for d in $(find . -type d -mindepth 1 -maxdepth 1); do \
+        mkdir chart && cp -r $d/* chart && rm -rf $d/* && mv chart $d/chart && cd $d && tar -zcvf ../$d.tar.gz . && cd ../ && rm -rf $d; done
+
 COPY --from=build /tmp/schema.yaml /data/

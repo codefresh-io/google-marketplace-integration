@@ -55,7 +55,7 @@ app/build:: .build/codefresh/deployer \
 .build/codefresh/deployer: apptest/deployer/* \
                            apptest/deployer/manifest/* \
                            deployer/* \
-                           manifest/* \
+                           chart/* \
                            schema.yaml \
                            .build/marketplace/deployer/envsubst \
                            .build/var/APP_DEPLOYER_IMAGE \
