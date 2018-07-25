@@ -60,9 +60,12 @@ properties:
     type: string
     x-google-marketplace:
       type: REPORTING_SECRET
+  codefreshApiKey:
+    type: string
 required:
 - name
 - namespace
+- codefreshApiKey
 - imageCodefresh
 - imageInit
 - imageMysql

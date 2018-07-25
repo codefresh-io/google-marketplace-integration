@@ -28,6 +28,7 @@ NAME ?= codefresh-1
 APP_PARAMETERS ?= { \
   "name": "$(NAME)", \
   "namespace": "$(NAMESPACE)", \
+  "codefreshApiKey": "$(CF_API_KEY)", \
   "imageCodefresh": "$(REGISTRY)/example/codefresh:$(TAG)", \
   "imageInit": "$(REGISTRY)/example/codefresh/init:$(TAG)", \
   "imageMysql": "$(REGISTRY)/example/codefresh/mysql:$(TAG)", \

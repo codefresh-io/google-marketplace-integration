@@ -1,0 +1,34 @@
+---
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-kube-agent
+  labels:
+    app.kubernetes.io/name: "{{ .Release.Name }}"
+    app.kubernetes.io/component: codefresh-kube-agent
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: "{{ .Release.Name }}"
+      app.kubernetes.io/component: codefresh-kube-agent
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: "{{ .Release.Name }}"
+        app.kubernetes.io/component: codefresh-kube-agent
+    spec:
+      serviceAccountName: {{ .Release.Name }}-service-account
+      containers:
+      - image: alpine:3.7
+        name: kube-agent
+        command:
+        - "/bin/sh"
+        - "-c"
+        - "cat /var/run/secrets/kubernetes.io/serviceaccount/token | base64 | tr -d \\n && cat /var/run/secrets/kubernetes.io/serviceaccount/ca.crt | base64 | tr -d \\n && echo $CF_API_KEY && while true; do sleep 5; done"
+        env:
+        - name: CF_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-secret
+              key: codefreshApiKey

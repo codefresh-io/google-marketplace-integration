@@ -38,6 +38,7 @@ make crd/install
 Build and install Codefresh onto your cluster:
 
 ```shell
+export CF_API_KEY="<codefresh-api-key>"
 make app/install
 ```
 
