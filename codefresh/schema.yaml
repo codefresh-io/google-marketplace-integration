@@ -62,10 +62,13 @@ properties:
       type: REPORTING_SECRET
   codefreshApiKey:
     type: string
+  kubeEndpoint:
+    type: string
 required:
 - name
 - namespace
 - codefreshApiKey
+- kubeEndpoint
 - imageCodefresh
 - imageInit
 - imageMysql

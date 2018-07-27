@@ -5,6 +5,11 @@ ifeq ($(CF_API_KEY),)
 $(error Must set CF_API_KEY.)
 endif
 
+# Must have kube endpoint set
+ifeq ($(KUBE_ENDPOINT),)
+$(error Must set KUBE_ENDPOINT.)
+endif
+
 # crd.Makefile provides targets to install Application CRD.
 include ../vendor/marketplace-tools/crd.Makefile
 
@@ -35,6 +40,7 @@ APP_PARAMETERS ?= { \
   "name": "$(NAME)", \
   "namespace": "$(NAMESPACE)", \
   "codefreshApiKey": "$(CF_API_KEY)", \
+  "kubeEndpoint": "$(KUBE_ENDPOINT)", \
   "imageCodefresh": "$(REGISTRY)/kube-agent:$(TAG)", \
   "imageInit": "$(REGISTRY)/example/codefresh/init:$(TAG)", \
   "imageMysql": "$(REGISTRY)/example/codefresh/mysql:$(TAG)", \
