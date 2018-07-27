@@ -1,5 +1,10 @@
 TAG ?= latest
 
+# Must have Codefresh API key
+ifeq ($(CF_API_KEY),)
+$(error Must set CF_API_KEY.)
+endif
+
 # crd.Makefile provides targets to install Application CRD.
 include ../vendor/marketplace-tools/crd.Makefile
 
@@ -23,13 +28,14 @@ include ../vendor/marketplace-tools/var.Makefile
 # It requires several APP_* variables defined as followed.
 include ../vendor/marketplace-tools/app.Makefile
 
+
 APP_DEPLOYER_IMAGE ?= $(REGISTRY)/example/codefresh/deployer:$(TAG)
 NAME ?= codefresh-1
 APP_PARAMETERS ?= { \
   "name": "$(NAME)", \
   "namespace": "$(NAMESPACE)", \
   "codefreshApiKey": "$(CF_API_KEY)", \
-  "imageCodefresh": "$(REGISTRY)/example/codefresh:$(TAG)", \
+  "imageCodefresh": "$(REGISTRY)/kube-agent:$(TAG)", \
   "imageInit": "$(REGISTRY)/example/codefresh/init:$(TAG)", \
   "imageMysql": "$(REGISTRY)/example/codefresh/mysql:$(TAG)", \
   "imageUbbagent": "$(REGISTRY)/example/codefresh/ubbagent:$(TAG)", \

@@ -10,7 +10,7 @@ properties:
       type: NAMESPACE
   imageCodefresh:
     type: string
-    default: $REGISTRY:$TAG
+    default: $REGISTRY/kube-agent:$TAG
     x-google-marketplace:
       type: IMAGE
       image:
