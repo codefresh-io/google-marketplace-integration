@@ -18,48 +18,6 @@ properties:
           splitByColon:
             before: imageCodefreshRepo
             after: imageCodefreshTag
-  imageInit:
-    type: string
-    default: $REGISTRY/init:$TAG
-    x-google-marketplace:
-      type: IMAGE
-  imageMysql:
-    type: string
-    default: $REGISTRY/mysql:$TAG
-    x-google-marketplace:
-      type: IMAGE
-  imageUbbagent:
-    type: string
-    default: $REGISTRY/ubbagent:$TAG
-    x-google-marketplace:
-      type: IMAGE
-  dbPassword:
-    type: string
-    x-google-marketplace:
-      type: GENERATED_PASSWORD
-      generatedPassword:
-        length: 16
-  customString:
-    title: Blog title
-    description: Codefresh requires a blog title for setup. This can be changed later.
-    type: string
-    default: 'My blog'
-    maxLength: 128
-    pattern: '[A-Za-z0-9 -]+'
-  customInteger:
-    title: Server replicas
-    type: integer
-    default: 1
-    minimum: 1
-    maximum: 128
-  customBoolean:
-    title: A custom boolean parameter.
-    type: boolean
-    default: false
-  reportingSecret:
-    type: string
-    x-google-marketplace:
-      type: REPORTING_SECRET
   codefreshApiKey:
     type: string
   kubeEndpoint:
@@ -67,14 +25,6 @@ properties:
 required:
 - name
 - namespace
+- imageCodefresh
 - codefreshApiKey
 - kubeEndpoint
-- imageCodefresh
-- imageInit
-- imageMysql
-- imageUbbagent
-- dbPassword
-- customString
-- customInteger
-- customBoolean
-- reportingSecret
