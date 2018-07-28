@@ -29,6 +29,13 @@ See [Getting Started](https://github.com/GoogleCloudPlatform/marketplace-k8s-app
 
 Run the following commands from within `codefresh` folder.
 
+Export the following required environment variables:
+
+```shell
+export CF_API_KEY="<codefresh-api-key>"
+export KUBE_ENDPOINT="https://<public-ip>"
+```
+
 Do a one time setup for application CRD:
 
 ```shell
@@ -38,7 +45,7 @@ make crd/install
 Build and install Codefresh onto your cluster:
 
 ```shell
-export CF_API_KEY="<codefresh-api-key>"
+
 make app/install
 ```
 
