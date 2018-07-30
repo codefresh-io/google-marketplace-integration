@@ -34,6 +34,10 @@ spec:
             secretKeyRef:
               name: {{ .Release.Name }}-secret
               key: kubeEndpoint
+        - name: CLUSTER_NAME
+          value: {{ .Values.clusterName }}
+        - name: CODEFRESH_API_ENDPOINT
+          value: {{ .Values.codefreshApiEndpoint }}
         - name: POD_NAMESPACE
           valueFrom:
             fieldRef:

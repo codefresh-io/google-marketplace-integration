@@ -1,0 +1,37 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: {{ .Release.Name }}-codefresh-dind-pod
+  annotations:
+    forceRedeployUniqId: "N/A"
+  labels:
+    app: codefresh-config
+    app.kubernetes.io/name: "{{ .Release.Name }}"
+    app.kubernetes.io/component: codefresh-dind-pod
+spec:
+  restartPolicy: Never
+  containers:
+  - image: {{ .Values.imageCodefreshDind }}
+    name: k8s-dind-config
+    imagePullPolicy: Always
+    command:
+      - "/app/k8s-dind-config"
+    env:
+      - name: NAMESPACE
+        valueFrom:
+          fieldRef:
+            fieldPath: metadata.namespace
+      - name: API_HOST
+        value: {{ .Values.codefreshApiEndpoint }}
+      - name: API_TOKEN
+        valueFrom:
+          secretKeyRef:
+            name: {{ .Release.Name }}-secret
+            key: codefreshApiKey
+      - name: REGISTRY_TOKEN
+        value: ""
+      - name: CLUSTER_NAME
+        value: {{ .Values.clusterName }}
+      - name: SLEEP_ON_ERROR
+        value: ""
