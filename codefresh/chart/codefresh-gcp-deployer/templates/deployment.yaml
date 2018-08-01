@@ -18,7 +18,6 @@ spec:
         app.kubernetes.io/name: "{{ .Release.Name }}"
         app.kubernetes.io/component: codefresh-kube-agent
     spec:
-      serviceAccountName: {{ .Release.Name }}-service-account
       containers:
       - image: {{ .Values.imageCodefresh }}
         imagePullPolicy: Always

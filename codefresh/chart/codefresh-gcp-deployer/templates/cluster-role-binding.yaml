@@ -12,5 +12,5 @@ roleRef:
   name: cluster-admin
 subjects:
 - kind: ServiceAccount
-  name: {{ .Release.Name }}-service-account
+  name: default
   namespace: {{ .Release.Namespace }}
