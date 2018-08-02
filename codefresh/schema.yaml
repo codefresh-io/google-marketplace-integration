@@ -18,9 +18,6 @@ properties:
           splitByColon:
             before: imageCodefreshRepo
             after: imageCodefreshTag
-  imageCodefreshDind:
-    type: string
-    default: codefresh/k8s-dind-config:latest
   codefreshApiKey:
     type: string
   codefreshApiEndpoint:
@@ -28,13 +25,9 @@ properties:
     default: "https://g.codefresh.io"
   kubeEndpoint:
     type: string
-  clusterName:
-    type: string
-    default: "gke-marketplace-test"
 required:
 - name
 - namespace
 - imageCodefresh
-- imageCodefreshDind
 - codefreshApiKey
 - kubeEndpoint

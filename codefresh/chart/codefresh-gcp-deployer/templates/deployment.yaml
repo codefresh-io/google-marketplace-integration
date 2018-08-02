@@ -23,25 +23,25 @@ spec:
         imagePullPolicy: Always
         name: kube-agent
         env:
-        - name: CF_API_KEY
+        - name: API_HOST
+          value: {{ .Values.codefreshApiEndpoint }}
+        - name: API_TOKEN
           valueFrom:
             secretKeyRef:
               name: {{ .Release.Name }}-secret
               key: codefreshApiKey
+        - name: CLUSTER_NAME
+          value: gke-{{ .Release.Name }}
         - name: KUBE_ENDPOINT
           valueFrom:
             secretKeyRef:
               name: {{ .Release.Name }}-secret
               key: kubeEndpoint
-        - name: CLUSTER_NAME
-          value: {{ .Values.clusterName }}
-        - name: CODEFRESH_API_ENDPOINT
-          value: {{ .Values.codefreshApiEndpoint }}
-        - name: POD_NAMESPACE
+        - name: NAMESPACE
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        - name: POD_SERVICE_ACCOUNT_NAME
+        - name: SERVICE_ACCOUNT_NAME
           valueFrom:
             fieldRef:
               fieldPath: spec.serviceAccountName
