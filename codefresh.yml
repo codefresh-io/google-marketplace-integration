@@ -8,5 +8,5 @@ steps:
     type: push
     candidate: ${{build_image}}
     tag: "1"
-    image_name: deployer
+    image_name: "codefresh-marketplace/deployer"
     registry: gcr-codefresh-public

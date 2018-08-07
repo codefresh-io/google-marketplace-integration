@@ -34,14 +34,14 @@ include ../vendor/marketplace-tools/var.Makefile
 include ../vendor/marketplace-tools/app.Makefile
 
 
-APP_DEPLOYER_IMAGE ?= $(REGISTRY)/deployer:$(TAG)
+APP_DEPLOYER_IMAGE ?= $(REGISTRY)/codefresh-marketplace/deployer:$(TAG)
 NAME ?= codefresh-1
 APP_PARAMETERS ?= { \
   "name": "$(NAME)", \
   "namespace": "$(NAMESPACE)", \
   "codefreshApiKey": "$(CF_API_KEY)", \
   "kubeEndpoint": "$(KUBE_ENDPOINT)", \
-  "imageCodefresh": "$(REGISTRY)/kube-agent:$(TAG)" \
+  "imageCodefresh": "$(REGISTRY)/codefresh-marketplace:$(TAG)" \
 }
 
 # Extend the target as defined in app.Makefile to
