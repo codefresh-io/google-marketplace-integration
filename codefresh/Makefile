@@ -1,4 +1,4 @@
-TAG ?= latest
+TAG ?= 1
 
 # Must have Codefresh API key
 ifeq ($(CF_API_KEY),)
