@@ -8,6 +8,6 @@ steps:
     type: push
     working_directory: codefresh/deployer/
     candidate: ${{build_image}}
-    tag: 1
+    tag: "1"
     image_name: deployer
     registry: gcr-codefresh-public
