@@ -1,2 +1,13 @@
 version: '1.0'
-steps: {}
+steps:
+  build_image:
+    type: build
+    working_directory: codefresh/deployer/
+    image_name: codefresh-public/deployer
+  push_image:
+    type: push
+    working_directory: codefresh/deployer/
+    candidate: ${{build_image}}
+    tag: latest
+    image_name: deployer
+    registry: gcr-codefresh-public
