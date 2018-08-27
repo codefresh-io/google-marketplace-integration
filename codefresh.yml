@@ -2,7 +2,8 @@ version: '1.0'
 steps:
   build_image:
     type: build
-    working_directory: codefresh/deployer/
+    working_directory: codefresh/
+    dockerfile: deployer/Dockerfile
     image_name: codefresh-public/deployer
   push_image:
     type: push
