@@ -4,10 +4,10 @@ steps:
     type: build
     working_directory: codefresh/
     dockerfile: deployer/Dockerfile
-    image_name: codefresh-public/deployer
+    image_name: codefresh-marketplace/deployer
   push_image:
     type: push
     candidate: ${{build_image}}
     tag: "1"
-    image_name: "codefresh-marketplace/deployer"
+    image_name: codefresh-marketplace/deployer
     registry: gcr-codefresh-public
