@@ -20,9 +20,6 @@ properties:
             after: imageCodefreshTag
   codefreshApiKey:
     type: string
-  codefreshApiEndpoint:
-    type: string
-    default: "https://g.codefresh.io"
   kubeEndpoint:
     type: string
 required:
