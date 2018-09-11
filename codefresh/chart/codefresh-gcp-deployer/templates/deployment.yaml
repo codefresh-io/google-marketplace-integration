@@ -31,7 +31,7 @@ spec:
               name: {{ .Release.Name }}-secret
               key: codefreshApiKey
         - name: CLUSTER_NAME
-          value: gke-{{ .Release.Name }}
+          value: gke-{{ .Release.Namespace }}-{{ .Release.Name }}
         - name: KUBE_ENDPOINT
           valueFrom:
             secretKeyRef:
