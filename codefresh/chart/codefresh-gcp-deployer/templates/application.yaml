@@ -12,7 +12,7 @@ metadata:
     app.kubernetes.io/name: "{{ .Release.Name }}"
 spec:
   descriptor:
-    type: Codefresh
+    type: Codefresh Hybrid
     version: '0.1'
     description: |-
       Codefresh is the first continuous delivery platform built for Kubernetes.
@@ -23,7 +23,13 @@ spec:
     - description: Getting Started
       url: https://codefresh.io/docs/docs/getting-started/
     notes: |-
-      TODO
+      If you see errors related to "kube-agent", it is likely due to insufficient permissions tied the default service account.
+
+      Try running the following command manually, replacing "NAMESPACE" with the namespace you have deployed the app to:
+
+      kubectl create clusterrolebinding NAMESPACE-admin --clusterrole cluster-admin --serviceaccount=NAMESPACE:default
+
+      This should cause the kube-agent pod to automatically restart. After a few minutes, the app should no longer display any errors.
   selector:
     matchLabels:
       app.kubernetes.io/name: "{{ .Release.Name }}"
