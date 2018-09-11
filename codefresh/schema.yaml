@@ -20,8 +20,12 @@ properties:
             after: imageCodefreshTag
   codefreshApiKey:
     type: string
+    title: Codefresh API Key
+    description: This is a Codefresh API token which you create in Codefresh Account Settings.
   kubeEndpoint:
     type: string
+    title: Kubernetes Endpoint
+    description: This is the "Endpoint" of the cluster (IP address). Copy this from the cluster's details in Google Cloud console.
 required:
 - name
 - namespace
