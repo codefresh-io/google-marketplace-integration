@@ -8,6 +8,10 @@ properties:
     type: string
     x-google-marketplace:
       type: NAMESPACE
+  reportingSecret:
+    type: string
+    x-google-marketplace:
+      type: REPORTING_SECRET
   imageCodefresh:
     type: string
     default: $REGISTRY/codefresh-marketplace:$TAG
@@ -29,6 +33,7 @@ properties:
 required:
 - name
 - namespace
+- reportingSecret
 - imageCodefresh
 - codefreshApiKey
 - kubeEndpoint

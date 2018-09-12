@@ -24,7 +24,7 @@ spec:
         name: kube-agent
         env:
         - name: API_HOST
-          value: {{ .Values.codefreshApiEndpoint | default "https://g.codefresh.io" | quote }}
+          value: {{ .Values.codefreshApiEndpoint | default "https://app-staging.codefresh.io" | quote }}
         - name: API_TOKEN
           valueFrom:
             secretKeyRef:
@@ -45,3 +45,20 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.serviceAccountName
+        {{ if .Values.reportingSecret }}
+        - name: GOOGLE_ENTITLEMENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.reportingSecret }}
+              key: entitlement-id
+        - name: GOOGLE_CONSUMER_ID
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.reportingSecret }}
+              key: consumer-id
+        - name: GOOGLE_REPORTING_KEY
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.reportingSecret }}
+              key: reporting-key
+        {{ end }}
