@@ -24,8 +24,6 @@ spec:
         imagePullPolicy: Always
         name: kube-agent
         env:
-        - name: RUN_INTERVAL_SECONDS
-          value: "30"
         - name: API_HOST
           value: {{ .Values.codefreshApiEndpoint | default "https://app-staging.codefresh.io" | quote }}
         - name: API_TOKEN
