@@ -5,6 +5,9 @@ steps:
     working_directory: codefresh/
     dockerfile: deployer/Dockerfile
     image_name: codefresh-marketplace/deployer
+    build_arguments:
+      - REGISTRY=gcr.io/codefresh-public
+      - TAG=1
   push_image:
     type: push
     candidate: ${{build_image}}
