@@ -39,7 +39,7 @@ NAME ?= codefresh-1
 APP_PARAMETERS ?= { \
   "name": "$(NAME)", \
   "namespace": "$(NAMESPACE)", \
-  "reportingSecret": "", \
+  "reportingSecret": "$(REPORTING_SECRET)", \
   "codefreshApiKey": "$(CF_API_KEY)", \
   "kubeEndpoint": "$(KUBE_ENDPOINT)", \
   "imageCodefresh": "$(REGISTRY)/codefresh-marketplace:$(TAG)", \
