@@ -42,7 +42,8 @@ APP_PARAMETERS ?= { \
   "reportingSecret": "", \
   "codefreshApiKey": "$(CF_API_KEY)", \
   "kubeEndpoint": "$(KUBE_ENDPOINT)", \
-  "imageCodefresh": "$(REGISTRY)/codefresh-marketplace:$(TAG)" \
+  "imageCodefresh": "$(REGISTRY)/codefresh-marketplace:$(TAG)", \
+  "serviceAccount": "default" \
 }
 
 # Extend the target as defined in app.Makefile to

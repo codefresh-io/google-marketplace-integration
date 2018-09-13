@@ -30,6 +30,20 @@ properties:
     type: string
     title: Kubernetes Endpoint
     description: This is the "Endpoint" of the cluster (IP address). Copy this from the cluster's details in Google Cloud console.
+  serviceAccount:
+    type: string
+    title: Cluster Admin Service Account
+    description: >-
+      Name of a service account in the target namespace that
+      has cluster-admin permissions. This is needed for Codefresh
+      to work properly with your cluster.
+    x-google-marketplace:
+      type: SERVICE_ACCOUNT
+      serviceAccount:
+        roles:
+        - type: ClusterRole
+          rulesType: PREDEFINED
+          rulesFromRoleName: cluster-admin
 required:
 - name
 - namespace
@@ -37,3 +51,4 @@ required:
 - imageCodefresh
 - codefreshApiKey
 - kubeEndpoint
+- serviceAccount
