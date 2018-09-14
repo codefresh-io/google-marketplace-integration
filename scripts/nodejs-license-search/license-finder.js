@@ -8,8 +8,9 @@
  *
 */
 
-const path = require('path');
 const fs = require('fs');
+const path = require('path');
+const match = require(path.resolve(__dirname, './match.js'));
 
 function *walkSync(dir) {
     const files = fs.readdirSync(dir);
@@ -52,16 +53,21 @@ function main() {
     let count = 1;
     const mustContainText = process.env.LICENSE_SEARCH_MUST_CONTAIN;
     const rootDir = process.cwd();
-    console.log(rootDir);
     const absolutePath = path.resolve(rootDir);
     for (const file of walkSync(absolutePath)) {
         if (isLicenseFilePath(file.path)) {
-            if (mustContainText && !file.path.includes(mustContainText)) {
+            if (mustContainText && !file.path.includes('/' + mustContainText + '/')) {
                 continue;
             }
-            console.info('[' + count + '] '
-                + humanFileSize(file.stats.size) + ' ' + file.path);
-            count++;
+            fs.readFile(file.path, 'utf8', function(err, contents) {
+                const type = match(contents);
+                console.info('[' + count + '] '
+                    + humanFileSize(file.stats.size)
+                    + ' ' + type
+                    + ' ' + file.path);
+                count++;
+            });
+
         }
     }
 }

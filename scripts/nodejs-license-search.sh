@@ -7,8 +7,8 @@ function search {
 	local search="$2"
 	docker run --rm -it \
 		-e LICENSE_SEARCH_MUST_CONTAIN="$search" \
-		-v $DIR/nodejs-license-search/license-finder.js:/license-finder.js \
-		--entrypoint=/license-finder.js \
+		-v $DIR/nodejs-license-search:/nodejs-license-search \
+		--entrypoint=/nodejs-license-search/license-finder.js \
 		$image
 }
 
