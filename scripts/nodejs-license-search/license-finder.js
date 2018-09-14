@@ -61,9 +61,9 @@ function main() {
             fs.readFile(file.path, 'utf8', function(err, contents) {
                 const type = match(contents);
                 console.info(
-                    humanFileSize(file.stats.size)
+                    file.path
                     + ' ' + type
-                    + ' ' + file.path);
+                    + ' ' + humanFileSize(file.stats.size));
                 process.exit();
             });
 

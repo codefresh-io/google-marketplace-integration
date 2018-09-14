@@ -18,13 +18,15 @@ function main {
 		echo "Usage: ./nodejs-license-search.sh [file] [image]"
 		exit 1
 	fi
+	local txtfile="$1"
+	local image="$2"
 	while read p; do
 		search="$(echo $p | cut -d@ -f1)"
 		result="$(search "$2" "$search")"
 		if [[ "$result" != "" ]]; then
-			echo "$p: $result"
+			echo "$p: $image $result"
 		fi
-	done < "$1"
+	done < "$txtfile"
 }
 
 main "$@"
