@@ -50,7 +50,6 @@ function humanFileSize(bytes, si) {
 }
 
 function main() {
-    let count = 1;
     const mustContainText = process.env.LICENSE_SEARCH_MUST_CONTAIN;
     const rootDir = process.cwd();
     const absolutePath = path.resolve(rootDir);
@@ -61,11 +60,11 @@ function main() {
             }
             fs.readFile(file.path, 'utf8', function(err, contents) {
                 const type = match(contents);
-                console.info('[' + count + '] '
-                    + humanFileSize(file.stats.size)
+                console.info(
+                    humanFileSize(file.stats.size)
                     + ' ' + type
                     + ' ' + file.path);
-                count++;
+                process.exit();
             });
 
         }
