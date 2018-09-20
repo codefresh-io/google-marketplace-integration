@@ -25,7 +25,7 @@ spec:
         name: kube-agent
         env:
         - name: API_HOST
-          value: {{ .Values.codefreshApiEndpoint | default "https://app-staging.codefresh.io" | quote }}
+          value: {{ .Values.codefreshApiEndpoint | default "https://g.codefresh.io" | quote }}
         - name: API_TOKEN
           valueFrom:
             secretKeyRef:
