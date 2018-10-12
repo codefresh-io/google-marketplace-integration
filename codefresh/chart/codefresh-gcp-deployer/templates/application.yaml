@@ -23,7 +23,16 @@ spec:
     - description: Getting Started
       url: https://codefresh.io/docs/docs/getting-started/
     notes: |-
-      TODO
+      After initial deployment, you must run the following command manually:
+
+      APP="{{ .Release.Name }}" NS="{{ .Release.Namespace }}" ENDPOINT="$(kubectl cluster-info | head -1 | \
+        cut -d' ' -f6 | sed 's/\x1b\[[0-9;]*m//g' | tr -d '\n' | base64)" && \
+          kubectl -n $NS get secret $APP-secret -o yaml | \
+            sed -r "s/(kubeEndpoint: ).*$/\1$ENDPOINT/" | kubectl apply -f - &&
+              kubectl -n $NS delete pod --wait=0 -l app.kubernetes.io/name=$APP
+
+      This will provide the deployment with the cluster endpoint, which is required to connect the cluster to your Codefresh account.
+
   selector:
     matchLabels:
       app.kubernetes.io/name: "{{ .Release.Name }}"
