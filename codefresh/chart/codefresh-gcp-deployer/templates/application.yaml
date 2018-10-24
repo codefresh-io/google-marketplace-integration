@@ -29,7 +29,7 @@ spec:
       ENDPOINT="$(kubectl cluster-info | head -1 | sed -e 's/.*https/https/; s/\x1b\[[0-9;]*m//g' | tr -d '\n' | base64)" && \
       kubectl -n {{ .Release.Namespace }} get secret {{ .Release.Name }}-secret -o yaml | \
         sed -r "s/(kubeEndpoint: ).*$/\1$ENDPOINT/" | kubectl apply -f - && \
-      kubectl -n {{ .Release.Namespace }} delete pod --wait=0 -l app.kubernetes.io/name={{ .Release.Name }}
+      kubectl -n {{ .Release.Namespace }} delete pod -l app.kubernetes.io/name={{ .Release.Name }}
       ```
 
       This will provide the deployment with the cluster endpoint, which is required to connect the cluster to your Codefresh account.
