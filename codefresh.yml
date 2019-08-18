@@ -7,10 +7,10 @@ steps:
     image_name: codefresh-marketplace/deployer
     build_arguments:
       - REGISTRY=gcr.io/codefresh-public
-      - TAG=3
+      - TAG=4.0
   push_image:
     type: push
     candidate: ${{build_image}}
-    tag: "3"
+    tag: "4.0"
     image_name: codefresh-marketplace/deployer
     registry: gcr-codefresh-public
